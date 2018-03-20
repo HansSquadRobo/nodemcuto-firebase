@@ -1,0 +1,512 @@
+<html>
+	<head>
+		<title>Firebase Web Basics</title>
+		
+		<style>
+		
+		@import url(https://fonts.googleapis.com/css?family=Karla:400,700);
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+a:hover {
+  font-weight: normal;
+}
+
+.robot {
+  position: relative;
+  height: 75px;
+  width: 100px;
+  margin: 55px auto;
+  border: 5px solid #4F4F4F;
+  border-radius: 8px;
+  /* This box shadow is his neck */
+  box-shadow: 0px 40px 0px -32px #4F4F4F;
+}
+.robot:before {
+  content: '';
+  position: absolute;
+  top: 17px;
+  left: -13px;
+  width: 13px;
+  height: 25px;
+  border: 5px solid #4F4F4F;
+  border-radius: 13px 0px 0px 13px;
+}
+.robot:after {
+  content: '';
+  position: absolute;
+  top: 17px;
+  left: 90px;
+  width: 13px;
+  height: 25px;
+  border: 5px solid #4F4F4F;
+  border-radius: 0px 13px 13px 0px;
+}
+.robot p {
+  position: absolute;
+  top: -30px;
+  left: -330px;
+  text-indent: -10px;
+  font-family: 'Karla';
+}
+.robot p span {
+  font-family: helvetica;
+  font-size: 3em;
+  letter-spacing: 4px;
+  font-weight: bold;
+  color: #333333;
+  text-shadow: 1px 1px #545454,
+    					 2px 2px #545454,
+    					 3px 3px #4C4C4C,
+    					 4px 4px #4C4C4C,
+    					 5px 5px #858585,
+    					 6px 6px #858585,
+    					 7px 7px #BFBFBF,
+    				 	 8px 8px #BFBFBF;
+}
+
+.antena {
+  position: absolute;
+  top: -20px;
+  left: 30px;
+  width: 30px;
+  height: 20px;
+  border: 5px solid #4F4F4F;
+  border-radius: 15px 15px 0px 0px;
+}
+.antena:before {
+  content: '';
+	position: absolute;
+  left: 7px;
+  top: -20px;
+  width: 5px;
+  height: 15px;
+  background-color: #4F4F4F;
+}
+.antena:after {
+  content: '';
+  position: absolute;
+  top: -36px;
+  left: -1px;
+  width: 21px;
+  height: 21px;
+  border: 5px solid #4F4F4F;
+  border-radius: 21px;
+}
+
+.face {
+  position: absolute;
+  left: 13px;
+  top: 18px;
+  height: 4px;
+  width: 4px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 2px 2px 0px 5px #4F4F4F;
+}
+.face:before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 50px;
+  height: 4px;
+  width: 4px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0px 5px #4F4F4F;
+}
+.face:after {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: -5px;
+  width: 75px;
+  height: 5px;
+  background-color: #4F4F4F;
+  border-radius: 5px;
+}
+
+.body {
+  position: absolute;
+  top: 73px;
+  left: -5px;
+  height: 65px;
+  width: 100px;
+  border: 5px solid #4F4F4F;
+  border-radius: 8px;
+}
+/**.body:before {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 68px;
+  height: 14px;
+  width: 14px;
+  background-color: none;
+  border: 2px solid #4F4F4F;
+  border-radius: 15px;
+  box-shadow: 0px 16px 0px -1px #4F4F4F;
+  -webkit-animation: lights 20s infinite;
+  -moz-animation: lights 20s infinite;
+  -ms-animation: lights 20s infinite;
+  -o-animation: lights 20s infinite;
+}
+**/
+.bowtie {
+  position: absolute;
+  top: 82px;
+  left: 38px;
+  height: 16px;
+  width: 16px;
+  background-color: #4F4F4F;
+  border-radius: 16px;
+  -webkit-animation: spin 20s infinite;
+  -moz-animation: spin 20s infinite;
+  -ms-animation: spin 20s infinite;
+  -0-animation: spin 20s infinite;
+}
+
+.bowtie:before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -8px;
+  width: 0px;
+  height: 0px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 18px solid #4F4F4F;
+  border-radius: 3px;
+}
+.bowtie:after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 6px;
+  width: 0px;
+  height: 0px;
+  border-top: 10px solid transparent;
+  border-right: 18px solid #4F4F4F;
+  border-bottom: 10px solid transparent;
+  border-radius: 3px;
+}
+
+.arms {
+  position: absolute;
+  top: 81px;
+  left: 93px;
+  height: 45px;
+  width: 20px;
+  border: 5px solid #4F4F4F;
+  border-left: none;
+  border-bottom: none;
+  border-radius: 0px 50px 0px 0px;
+}
+.arms:before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -116px;
+  height: 45px;
+  width: 20px;
+  border: 5px solid #4F4F4F;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 50px 0px 0px 0px;
+}
+.arms:after {
+  content: '';
+	position: absolute;
+  top: 39px;
+  left: 4px;
+  height: 26px;
+  width: 26px;
+  border: 5px solid #4F4F4F;
+  border-radius: 26px;
+  box-shadow: -130px 0px 0px -5px #fff,
+    					-130px 0px 0px 0px #4F4F4F;
+}
+
+.legs {
+  position: absolute;
+  top: 138px;
+  left: 1px;
+  height: 41px;
+  width: 35px;
+  border: 5px solid #4F4F4F;
+  box-shadow: 53px 0px 0px -5px #fff,
+    					53px 0px 0px 0px #4F4F4F;
+}
+.legs:before {
+  content: '';
+  position: absolute;
+  top: 31px;
+  left: -8px;
+  height: 17px;
+  width: 41px;
+  border: 5px solid #4F4F4F;
+}
+.legs:after {
+  content: '';
+  position: absolute;
+  top: 31px;
+  left: 45px;
+  height: 17px;
+  width: 41px;
+  border: 5px solid #4F4F4F;
+}
+ 
+@-webkit-keyframes spin {
+  from, to {
+    -webkit-transform: rotate(0deg);
+  }
+  5% {
+    -webkit-transform: rotate(0deg);  
+  }
+  15% {
+    -webkit-transform: rotate(720deg); 
+  }
+  16% {
+    -webkit-transform: rotate(0deg);
+  }
+}
+
+@-moz-keyframes spin {
+  from, to {
+    -moz-transform: rotate(0deg);
+  }
+  5% {
+    -moz-transform: rotate(0deg);  
+  }
+  15% {
+    -moz-transform: rotate(720deg); 
+  }
+  16% {
+    -moz-transform: rotate(0deg);
+  }
+}
+
+@-ms-keyframes spin {
+  from, to {
+    -ms-transform: rotate(0deg);
+  }
+  5% {
+    -ms-transform: rotate(0deg);  
+  }
+  15% {
+    -ms-transform: rotate(720deg); 
+  }
+  16% {
+    -ms-transform: rotate(0deg);
+  }
+}
+
+@-o-keyframes spin {
+  from, to {
+    -o-transform: rotate(0deg);
+  }
+  5% {
+    -o-transform: rotate(0deg);  
+  }
+  15% {
+    -o-transform: rotate(720deg); 
+  }
+  16% {
+    -o-transform: rotate(0deg);
+  }
+}
+
+/* Only works in Firefox right now */
+
+@-webkit-keyframes lights {
+  from, to {
+    background-color: none;
+    border: 2px solid #4F4F4F;
+    box-shadow: 0px 16px 0px -1px #4F4F4F;
+  }
+  20% {
+    background-color: #4F4F4F;
+  }
+  25% {
+    background-color: none;
+  }
+}
+
+@-moz-keyframes lights {
+  from, to {
+    background-color: none;
+    border: 2px solid #4F4F4F;
+    box-shadow: 0px 16px 0px -1px #4F4F4F;
+  }
+  20% {
+    background-color: #4F4F4F;
+  }
+  25% {
+    background-color: none;
+  }
+}
+
+@-ms-keyframes lights {
+  from, to {
+    background-color: none;
+    border: 2px solid #4F4F4F;
+    box-shadow: 0px 16px 0px -1px #4F4F4F;
+  }
+  20% {
+    background-color: #4F4F4F;
+  }
+  25% {
+    background-color: none;
+  }
+}
+
+@-o-keyframes lights {
+  from, to {
+    background-color: none;
+    border: 2px solid #4F4F4F;
+    box-shadow: 0px 16px 0px -1px #4F4F4F;
+  }
+  3s {
+    background-color: none;
+  }
+  4s {
+    background-color: #4F4F4F;
+  }
+  5s {
+    background-color: none;
+  }
+}
+
+
+/*GENERATOR*/
+
+ 
+  div#frame
+  {
+    margin: 0;
+    border: none;
+    padding: 0;
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    height: 150%;
+    float: none;
+  }
+  
+  div#container
+  {
+    border: none;
+    margin: 1em;
+    padding: 0;
+     float: none;
+    display: block;
+  }
+  
+  div#options 
+  {
+    position: relative;
+    float: left;
+
+
+    }
+  
+  div#fract
+  {
+ 
+    vertical-align: middle;
+    height: 65px;
+  
+    }
+		</style>
+		
+	</head>
+	<body>
+		
+		
+		
+			<h1 align="left">Firebase Web App</h1>
+			<button id="submitBtn" onclick="submitOn()"><i class="fa fa-arrow-right" aria-hidden="true"></i>On</button>
+			<button id="submitBtn" onclick="submitOff()"><i class="fa fa-arrow-right" aria-hidden="true"></i>Off</button>
+		
+		
+			<button id="submitBtn" onclick="submitOn2()"><i class="fa fa-arrow-right" aria-hidden="true"></i>On2</button>
+			<button id="submitBtn" onclick="submitOff2()"><i class="fa fa-arrow-right" aria-hidden="true"></i>Off2</button>
+			
+			<button id="submitBtn" onclick="submitOn3()"><i class="fa fa-arrow-right" aria-hidden="true"></i>On3</button>
+			<button id="submitBtn" onclick="submitOff3()"><i class="fa fa-arrow-right" aria-hidden="true"></i>Off3</button>
+			
+			<button id="submitBtn" onclick="submitOn4()"><i class="fa fa-arrow-right" aria-hidden="true"></i>On4</button>
+			<button id="submitBtn" onclick="submitOff4()"><i class="fa fa-arrow-right" aria-hidden="true"></i>Off4</button>
+			
+			<button id="submitBtn" onclick="submitOn5()"><i class="fa fa-arrow-right" aria-hidden="true"></i>On5</button>
+			<button id="submitBtn" onclick="submitOff5()"><i class="fa fa-arrow-right" aria-hidden="true"></i>Off5</button>
+			
+			<button id="submitBtn" onclick="submitOn6()"><i class="fa fa-arrow-right" aria-hidden="true"></i>On6</button>
+			<button id="submitBtn" onclick="submitOff6()"><i class="fa fa-arrow-right" aria-hidden="true"></i>Off6</button>
+			
+			<button id="submitBtn" onclick="submitOn7()"><i class="fa fa-arrow-right" aria-hidden="true"></i>On7</button>
+			<button id="submitBtn" onclick="submitOff7()"><i class="fa fa-arrow-right" aria-hidden="true"></i>Off7</button>
+		
+		
+
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB3xhfC81rGVVbLhtAWw9H4QEnHNucXAW8",
+    authDomain: "switch-9c4f9.firebaseapp.com",
+    databaseURL: "https://switch-9c4f9.firebaseio.com",
+    projectId: "switch-9c4f9",
+    storageBucket: "switch-9c4f9.appspot.com",
+    messagingSenderId: "42293609753"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script src="index.js"></script>
+		
+	
+<div class="robot">
+  <p>
+  
+	<div class="antena"></div>
+  <div class="face"></div>
+  <div id="fract" class="body">
+       <canvas id="canvas" width="92" height="58"></canvas>
+     
+    
+  </div>
+  
+  <!--<div class="bowtie"></div>
+  --><div class="arms"></div>
+  <div class="legs"></div>
+</div>
+
+
+
+</div>
+</div>
+	
+		
+	<div style='text-align: right;position: fixed;z-index:9999999;bottom: 0; width: 100%;cursor: pointer;line-height: 0;'><a title="Hosted on free web hosting 000webhost.com. Host your own website for FREE." target="_blank" href="https://www.000webhost.com/?utm_source=000webhostapp&amp;utm_campaign=000_logo&amp;utm_medium=website_homeoutomation&amp;utm_content=footer_img"><img src="https://cdn.rawgit.com/000webhost/logo/e9bd13f7/footer-powered-by-000webhost-white2.png"  alt="www.000webhost.com"></a></div></body>
+</html>

@@ -1,0 +1,76 @@
+
+#include <ESP8266WiFi.h>
+#include <FirebaseArduino.h>
+#include <WiFiClient.h>
+
+
+// Set these to run example.
+#define FIREBASE_HOST "switch-9c4f9.firebaseio.com"
+#define FIREBASE_AUTH "UIf24AAWRijVnHWbqFk5pTQ0CPs2S6OwFqbcyl3A"
+#define WIFI_SSID "D-Link"
+#define WIFI_PASSWORD "#ssss@94315#"
+
+
+#define LED D1
+#define LED2 D2
+
+
+
+void setup() {
+
+pinMode(LED,OUTPUT);
+pinMode(LED2,OUTPUT);
+digitalWrite(LED,0);
+digitalWrite(LED2,0);
+Serial.begin(9600);
+
+WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+
+Serial.print("connecting");
+
+while (WiFi.status() != WL_CONNECTED) {
+
+Serial.print(".");
+
+delay(500);
+
+}
+
+Serial.println();
+
+Serial.print("connected: ");
+
+Serial.println(WiFi.localIP());
+
+Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+
+Firebase.setString("Light1","true");
+Firebase.setString("Light2","true");
+
+
+}
+
+void loop() {
+
+if(Firebase.getString("Light1").equals("false")) 
+{digitalWrite(LED,HIGH);}
+else{digitalWrite(LED,LOW);}
+
+if(Firebase.getString("Light2").equals("false")) 
+{digitalWrite(LED2,HIGH);}
+else{digitalWrite(LED2,LOW);}
+
+if (Firebase.failed()) // Check for errors 
+{
+
+Serial.print("setting /number failed:");
+
+Serial.println(Firebase.error());
+
+return;
+
+}
+
+delay(1000);
+
+}

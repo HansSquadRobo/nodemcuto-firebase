@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "42293609753",
+    "firebase_url": "https://switch-9c4f9.firebaseio.com",
+    "project_id": "switch-9c4f9",
+    "storage_bucket": "switch-9c4f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42293609753:android:2e9b731e72f32559",
+        "android_client_info": {
+          "package_name": "com.example.rohan.squadrobotech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "42293609753-7salhto5g1g6opieq4v5n0tv74im21p6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rohan.squadrobotech",
+            "certificate_hash": "e0db57ec8b2772a07f1d784b3abca6d9294144ab"
+          }
+        },
+        {
+          "client_id": "42293609753-7imc61idfe15gqeqipc1hh5k3lad48dt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPf65byJyoyQBz5Ig_0PaMZbXoxR_WvwE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "42293609753-7imc61idfe15gqeqipc1hh5k3lad48dt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
